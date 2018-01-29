@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>时间日历插件</title>
+    <link rel="stylesheet" href="../style/normalize.min.css">
+    <link rel="stylesheet" href="../style/common.css">
+    <link rel="stylesheet" href="calendar.css">
+    <style>
+        body {
+            width: 100%;
+            height: 3000px;
+        }
+        .demo1,
+        .demo2,
+        .demo3,
+        .demo4 {
+            position: relative;
+            width: 220px;
+            height: 32px;
+            margin: 50px auto;
+        }
+        .dater1,
+        .dater2,
+        .dater3,
+        .dater4 {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+    </style>
+    <script src="../script/jquery-1.12.3.min.js"></script>
+    <!-- <script src="calendar.min.js"></script> -->
+    <script src="calendar.min.js"></script>
+</head>
+<body>
+    <div class="demo1">
+        <input type="text" class="dater1">
+    </div>
+    <div class="demo2">
+        <input type="text" class="dater2">
+    </div>
+    <div class="demo3">
+        <input type="text" class="dater3">
+    </div>
+    <div class="demo4">
+        <input type="text" class="dater4">
+    </div>
+    <script>
+        $(function(){
+            $('.dater1').Calendar({
+                defaultTime: '2018/2/24 12:33',
+                type: 1,
+                beforeCreatFn: function() {
+                    console.log('aaa');
+                },
+                afterCreatFn: function(a) {
+                    console.log(a);
+                },
+                changeTimeFn: function(a) {
+                    $('.dater1').val(a);
+                }
+            });
+            $('.dater2').Calendar({
+                type: 2,
+                changeTimeFn: function(a) {
+                    console.log(a);
+                    $('.dater2').val(a);
+                }
+            });
+            $('.dater3').Calendar({
+                type: 3,
+                defaultTime: '2019/2/24 12:3',
+                changeTimeFn: function(a) {
+                    console.log(a);
+                    $('.dater3').val(a);
+                }
+            });
+            $('.dater4').Calendar({
+                type: 4,
+                changeTimeFn: function(a) {
+                    console.log(a);
+                    $('.dater4').val(a);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

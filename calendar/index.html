@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
+    <title>插件API使用说明</title>
+    <link rel="stylesheet" href="../style/normalize.min.css">
+    <link rel="stylesheet" href="../style/common.css">
+    <link rel="stylesheet" href="../style/jquery.snippet.css">
+    <link rel="stylesheet" href="../style/explain.css">
+    <script src="../script/jquery-1.12.3.min.js"></script>
+    <script src="../script/jquery.snippet.js"></script>
+    <script>
+        $(function(){
+            var $app = $('.app');
+            var html = '';
+            var $html = $('<pre class="module-code"></pre>');
+            html += '$(obj).Calendar(options);';
+            $html.html(html);
+            $app.append($html);
+            $html.snippet("javascript", { 
+                style: 'darkblue',
+                collapse: false,
+                menu: false,
+                startCollapsed: false,
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1 class="c-title">基本兼容IE8的日历时间插件</h1>
+    <h2 class="t">插件说明</h2>
+    <div class="explain">
+        <p>插件版本：v1.0（测试版）</p>
+        <p>简要说明：本插件是提供了四种常见状态下（只选择年月日、只选择年月、选择年月日+时分秒、只选择时分秒四种情况）的日历时间选择插件，该插件开发了一些配置参数和相关的回调函数。</p>
+    </div>
+    <h2 class="t">调用方法</h2>
+    <div class="app"></div>
+    <h2 class="t">DEMO示例</h2>
+    <a href="demo.html" target="_blank" class="link">点击这里查看demo示例</a>
+    <h2 class="t">接口说明</h2>
+    <table class="api">
+        <tr>
+            <th class="th-1">API</th>
+            <th class="th-2">说明</th>
+            <th class="th-3">类型</th>
+            <th class="th-4">默认值</th>
+        </tr>
+        <tr>
+            <td>
+                <span class="t">skin</span>
+            </td>
+            <td>
+                <span class="t">自定义class样式名称，会直接add到调用的元素上</span>
+            </td>
+            <td>
+                <span class="t">string</span>
+            </td>
+            <td>
+                <span class="t">无</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="t">type</span>
+            </td>
+            <td>
+                <span class="t">日历类型（1~4四种日历类型）：1（年月日类型日历）；2（年月类型日历）；3（年月日+时分秒日历类型）；4（时分秒时间类型）</span>
+            </td>
+            <td>
+                <span class="t">int</span>
+            </td>
+            <td>
+                <span class="t">1</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="t">calenWidth</span>
+            </td>
+            <td>
+                <span class="t">日历对象的自定义宽度，默认以调用对象的宽度为宽度，但是受最小宽度（205px）的限制</span>
+            </td>
+            <td>
+                <span class="t">int</span>
+            </td>
+            <td>
+                <span class="t">205</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="t">calenHeight</span>
+            </td>
+            <td>
+                <span class="t">日历对象的自定义高度，默认是随日历内容变化而变化</span>
+            </td>
+            <td>
+                <span class="t">int</span>
+            </td>
+            <td>
+                <span class="t">无</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="t">defaultTime</span>
+            </td>
+            <td>
+                <span class="t">初始化默认时间（可以是单纯的年月日格式，也可以是年月日+时分秒格式）例如：2018/01/01，或者2018/01/01 09:12:00</span>
+            </td>
+            <td>
+                <span class="t">string</span>
+            </td>
+            <td>
+                <span class="t">系统当前日期时间</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="t">beforeCreatFn</span>
+            </td>
+            <td>
+                <span class="t">回调函数。日历未创建挂载到页面时触发，如果在改回调函数内添加“return false;”，则会阻止日历继续执行创建。</span>
+            </td>
+            <td>
+                <span class="t">object</span>
+            </td>
+            <td>
+                <span class="t">无返回参数</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="t">afterCreatFn</span>
+            </td>
+            <td>
+                <span class="t">回调函数。日历对象初始化创建，并挂载于页面时触发，提供一个参数（日历整体的的对象元素）</span>
+            </td>
+            <td>
+                <span class="t">object</span>
+            </td>
+            <td>
+                <span class="t">返回一个参数</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="t">changeTimeFn</span>
+            </td>
+            <td>
+                <span class="t">回调函数。在选择了具体的日历日期时间等，点击确定或今日时间快捷选择，两个按钮所触发的回调函数，并返回一个参数（当前用户选择的具体时间），具体开发者可进行将该事件填写到需要填写的地方等操作。</span>
+            </td>
+            <td>
+                <span class="t">object</span>
+            </td>
+            <td>
+                <span class="t">返回一个参数</span>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
